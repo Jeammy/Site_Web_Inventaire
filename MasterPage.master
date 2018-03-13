@@ -1,0 +1,74 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <link href="CSS/styles.css" rel="stylesheet" />
+</head>
+<body>
+    <form id="form1" runat="server"> 
+        <asp:SqlDataSource ID="sqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:AppConnectionString %>"></asp:SqlDataSource>
+    <div id="container">
+        
+        <div id="Banner">
+            <%--Gauche de la banière, c'est-à-dire le logo de GameOn.--%>
+            <div id="bannerLeft">
+                <asp:Image ID="ImageLogoGameOn" runat="server" ImageUrl="~/img/grandformats/gameorouged50000noir.png" /></div>
+            <%--Droite de la banière, c'est-à-dire le formulaire d'inscription pour l'administrateur.--%>
+            <div id="bannerRight">
+                <asp:Panel ID="PanelAdmin" runat="server">
+                    <asp:Label ID="LabelLastName" runat="server" Text="Nom :"></asp:Label>
+                    <asp:TextBox ID="TextBoxLastName" runat="server"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidatorLastName" runat="server" ControlToValidate="TextBoxLastName" EnableClientScript="False" ErrorMessage="Le nom est invalide." Font-Bold="True" ForeColor="#990000"></asp:RequiredFieldValidator>
+                    <br />
+                    <asp:Label ID="LabelFirstName" runat="server" Text="Prénom :"></asp:Label>
+                    <asp:TextBox ID="TextBoxFirstName" runat="server"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidatorFirstName" runat="server" ControlToValidate="TextBoxFirstName" EnableClientScript="False" ErrorMessage="Le prénom est invalide." Font-Bold="True" ForeColor="#990000"></asp:RequiredFieldValidator>
+                    <br />
+                    <asp:Button ID="ButtonConnect" runat="server" OnClick="ButtonConnect_Click" Text="Se connecter" />
+                </asp:Panel>
+                <div class="clear">
+                </div>
+                
+                <div class="clear"></div>
+
+            </div>
+            <%--On arrête le balissage avec cette classe--%>
+             <div class="clear"></div>       
+            
+            <div id="body">
+                <div id="menu">
+                    <%--Nos boutons du menu--%>
+                    <asp:ImageButton ID="ImageButtonAccueil" runat="server" Height="65px" Width="200px" ImageUrl="~/img/grandformats/accueil.png" PostBackUrl="~/Default.aspx" />
+                    
+                    <asp:ImageButton ID="ImageButtonPointsDeDistribution" runat="server" Height="65px" Width="200px" ImageUrl="~/img/grandformats/pointsdistributions.png" PostBackUrl="~/PointsDeDistribution.aspx" />
+                    
+                    <asp:ImageButton ID="ImageButtonCommentaires" runat="server" Height="65px" Width="200px" ImageUrl="~/img/grandformats/commentaires.png" PostBackUrl="~/Commentaires.aspx" />
+                    
+                    <asp:ImageButton ID="ImageButtonPasserUneCommande" runat="server" Height="65px" Width="200px" ImageUrl="~/img/grandformats/commande.png" Enabled="False" Visible="False" PostBackUrl="~/Administration.aspx"/>
+                    
+                    <br />
+                    <%--JCOTE--%>
+                    <asp:ImageButton ID="ImageButtonDeconnection" runat="server" Height="65px" Width="200px" ImageUrl="~/img/grandformats/Deconnexion.png" Enabled="False" Visible="False" PostBackUrl="~/Default.aspx" OnClick="ImageButtonDeconnection_Click"/>
+                    <%--JCOTE--%>
+                    <div class="clear"></div>
+                </div>
+                
+                
+                <div id="content"><asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+                   
+                    </asp:ContentPlaceHolder></div>
+                <div class="clear"></div>
+            </div>
+            
+            <div id="footPage"></div>
+        </div>
+    </div>
+    </form>
+</body>
+</html>
